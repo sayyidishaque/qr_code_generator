@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        /* Flexbox styles for centering */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #242424;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 80%;
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"], .download-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover, .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        .qr-code {
+            margin-top: 20px;
+             border: 1px solid #ddd;
+        }
+
+        img {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <p>Created by: Sayyid Ishaque VT, Vettichira, Mob: 9895409460</p>
+        <form method="post" action="/">
+            <input type="text" name="data" placeholder="Enter text to generate QR Code" required>
+            <input type="submit" value="Generate QR Code">
+        </form>
+        {% if img %}
+        <div class="qr-code">
+            <h2>Your QR Code:</h2>
+            <img src="data:image/png;base64,{{ img }}" alt="QR Code">
+            <form method="post" action="/download">
+                <input type="hidden" name="qr_code_data" value="{{ qr_code_data }}">
+                <button type="submit" class="download-button">Download QR Code</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
